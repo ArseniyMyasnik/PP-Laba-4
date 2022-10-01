@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 string padej(int total) {
@@ -233,39 +232,38 @@ string padej(int total) {
 }
 int main() {
 	setlocale(LC_ALL, "Russian");
-	int employee,temp,total = 0;
+	int employee, temp, total = 0;
 	vector <int> km;
 	vector <int> price;
-	cout << "¬ведите количество сотрудников которых нужно развести: ";
+	cout << "Vvedite kolichestvo sotrudnikov kotoryh nuzhno razvesti: ";
 	cin >> employee;
 	for (int i = 0; i < employee; i++) {
-		cout << "¬ведите рассто€ние до дома " << i + 1 << "-го сотрудника(км): ";
+		cout << "Vvedite rasstoyanie do doma " << i + 1 << "-go sotrudnika(km): ";
 		cin >> temp;
 		km.push_back(temp);
 	}
-		for (int i = 0; i < employee; i++) {
-			cout << "¬ведите стоимость за 1 км у " << i + 1 << "-го таксиста(рубли): ";
-			cin >> temp;
-			price.push_back(temp);
-		}
-		for (int i = 0; i < employee; i++) {
-			for (int j = 0; j < employee - 1; j++) {
-				if (km[j] > km[j + 1]) {
-					swap(km[j], km[j + 1]);
-				}
-			}
-			for (int j = 0; j < employee - 1; j++) {
-				if (price[j] < price[j + 1]) {
-					swap(price[j], price[j + 1]);
-				}
+	for (int i = 0; i < employee; i++) {
+		cout << "Vvedite stoimost' za 1 km u " << i + 1 << "-go taksista(rubli): ";
+		cin >> temp;
+		price.push_back(temp);
+	}
+	for (int i = 0; i < employee; i++) {
+		for (int j = 0; j < employee - 1; j++) {
+			if (km[j] > km[j + 1]) {
+				swap(km[j], km[j + 1]);
 			}
 		}
-		for (int i = 0; i < employee; i++) {
-			cout << "—отрудника, которому ехать до дома " << km[i] << " км, посадим к таксисту с тарифом " << price[i] << " за 1 км" << endl;
-			cout << "Ёта поездка обойдетс€ в " << km[i] * price[i] << endl;
-			total = total + (km[i] * price[i]);
+		for (int j = 0; j < employee - 1; j++) {
+			if (price[j] < price[j + 1]) {
+				swap(price[j], price[j + 1]);
+			}
 		}
-		cout << "—уммарно все поездки обойдутс€ в: " << total << endl;
-		cout << "»тогова€ сумма словами - " << padej(total);
+	}
+	for (int i = 0; i < employee; i++) {
+		cout << "Sotrudnika, kotoromu ekhat' do doma " << km[i] << " km, posadim k taksistu s tarifom " << price[i] << " za 1 km" << endl;
+		cout << "Eta poezdka obojdetsya v " << km[i] * price[i] << endl;
+		total = total + (km[i] * price[i]);
+	}
+	cout << "Summarno vse poezdki obojdutsya v: " << total << endl;
+	cout << "Itogovaya summa slovami - " << padej(total);
 }
-
