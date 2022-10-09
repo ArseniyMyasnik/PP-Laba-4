@@ -1,7 +1,8 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-string padej(int total) {
+string padej(int total) {		// Podbiraet pravil'nyj padezh dlya otobrazheniya summy v bukvennom vide
 	string words;
 	if (total / 100000 == 1) {
 		words = words + "Sto ";
@@ -235,35 +236,35 @@ int main() {
 	int employee, temp, total = 0;
 	vector <int> km;
 	vector <int> price;
-	cout << "Vvedite kolichestvo sotrudnikov kotoryh nuzhno razvesti: ";
+	cout << "Vvedite kolichestvo sotrudnikov kotoryh nuzhno razvesti: ";		// Pol'zovatel' vvodit kolichestvo sotrudnikov 
 	cin >> employee;
-	for (int i = 0; i < employee; i++) {
+	for (int i = 0; i < employee; i++) {	// Pol'zovatel' vvodit rasstoyanie dlya doma kazhdogo sotrudnika
 		cout << "Vvedite rasstoyanie do doma " << i + 1 << "-go sotrudnika(km): ";
 		cin >> temp;
 		km.push_back(temp);
 	}
-	for (int i = 0; i < employee; i++) {
+	for (int i = 0; i < employee; i++) {	// Pol'zovatel' vvodit tarif u kazhdogo taksista
 		cout << "Vvedite stoimost' za 1 km u " << i + 1 << "-go taksista(rubli): ";
 		cin >> temp;
 		price.push_back(temp);
 	}
-	for (int i = 0; i < employee; i++) {
+	for (int i = 0; i < employee; i++) {	//	Cikl sortiruet rasstoyanie do doma kazhdogo sotrudnika
 		for (int j = 0; j < employee - 1; j++) {
 			if (km[j] > km[j + 1]) {
 				swap(km[j], km[j + 1]);
 			}
 		}
-		for (int j = 0; j < employee - 1; j++) {
+		for (int j = 0; j < employee - 1; j++) {	//	Cikl sortiruet ceny u kazhdogo taksista
 			if (price[j] < price[j + 1]) {
 				swap(price[j], price[j + 1]);
 			}
 		}
 	}
-	for (int i = 0; i < employee; i++) {
+	for (int i = 0; i < employee; i++) {	//	Vyvodit kakoj sotrudnik po kakomu tarifu poedet
 		cout << "Sotrudnika, kotoromu ekhat' do doma " << km[i] << " km, posadim k taksistu s tarifom " << price[i] << " za 1 km" << endl;
 		cout << "Eta poezdka obojdetsya v " << km[i] * price[i] << endl;
 		total = total + (km[i] * price[i]);
 	}
-	cout << "Summarno vse poezdki obojdutsya v: " << total << endl;
-	cout << "Itogovaya summa slovami - " << padej(total);
+	cout << "Summarno vse poezdki obojdutsya v: " << total << endl;	// Vyvodit summarnyj schet za vse poezdki
+	cout << "Itogovaya summa slovami - " << padej(total);	// Vyvodit summarnyj schet za vse poezdki slovami
 }
